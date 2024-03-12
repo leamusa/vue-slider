@@ -21,3 +21,18 @@ body {
   height: 100%;
   object-fit: cover;
 }
+.thumbs {
+  height: 200px;
+  width: calc(100% / 4);
+  display: flex;
+}
+.thumbs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+.active {
+  border: solid yellow;
+}
