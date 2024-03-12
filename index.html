@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+ <body>
+    <div id="app">
+      <div class="container">
+        <div class="slider">
+          <img :src="images[activeImage]" alt="">
+  
+        </div>
+        <div class="thumbs">
+          <img 
+            v-for="(img, index) in images"
+            :src="img" class="thumbs"
+            :class="{'active' : index == activeImage}"
+            @click="changeImg(index)">
+            
+          
+        </div>
+    <script src="./assets/js/app.js"></script>
+  </body>
+</html>
