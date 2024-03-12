@@ -8,20 +8,19 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
-    <body>
-      <!-- Vue app container with the id 'app' -->
-      <div id="app">
-        <!-- Main container div for the slider, thumbnails, and navigation buttons -->
-        <div class="container">
-          
-          <!-- Slider div containing an image with a dynamic source based on the activeImage -->
+    <div id="app">
+      <div class="container">
+        <h1> Capri Island, Napoli, Italy </h1>
+        <!-- circle add class overlay -->
+        <div class="overlay">
+          <!-- Due circles per i bottoni -->
+          <div class="circle next" @click="nextPrev(true)"></div>
+          <div class="circle prev" @click="nextPrev(false)"></div>
+
           <div class="slider">
             <img :src="images[activeImage]" alt="">
           </div>
-          
-          <!-- Thumbnail container div for displaying and selecting images -->
           <div class="thumb-container">
-            <!-- Vue loop to iterate over visibleImages and display thumbnail images -->
             <img
               v-for="(img, index) in visibleImages"
               :src="img" class="thumb"
@@ -30,17 +29,8 @@
             </img>
           </div>
         </div>
-  
-        <!-- Button container div for navigation buttons -->
-        <div class="button">
-          <!-- Vue event binding for 'Next' button to trigger nextPrev method with 'true' parameter -->
-          <div @click="nextPrev(true)" class="next">Next</div>
-          <!-- Vue event binding for 'Prev' button to trigger nextPrev method with 'false' parameter -->
-          <div @click="nextPrev(false)" class="prev">Prev</div>
-        </div>
       </div>
-  
-
+    </div>
     <script src="./assets/js/app.js"></script>
   </body>
 </html>
