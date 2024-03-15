@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Document</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  </head>
-  <body>
-    <div id="app">
-      <div class="container">
-        <h1> Capri Island, Napoli, Italy </h1>
-        <!-- circle add class overlay -->
-        <div class="overlay">
-          <!-- Due circles per i bottoni -->
-          <div class="circle next" @click="nextPrev(true)"></div>
-          <div class="circle prev" @click="nextPrev(false)"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <div class="overlay">
+        <button class="circle prev" @click="prevImage()" @mouseover="hoverEffect(true)" @mouseleave="hoverEffect(false)">{{ "<" }}</button>
 
-          <div class="slider">
-            <img :src="images[activeImage]" alt="">
-          </div>
-          <div class="thumb-container">
-            <img
-              v-for="(img, index) in visibleImages"
-              :src="img" class="thumb"
-              :class="{ active: index === activeImage % visibleImages.length }"
-              @click="changeImg(index)">
-            </img>
-          </div>
+        <div class="slider">
+          <img :src="images[activeImage]" alt="">
+        </div>
+
+        <button class="circle next" @click="nextImage()" @mouseover="hoverEffect(true)" @mouseleave="hoverEffect(false)">{{ ">" }}</button>
+        
+        <div class="thumb-container">
+          <img
+            v-for="(img, index) in images"
+            :src="img" 
+            class="thumb"
+            :class="{ active: index === activeImage % images.length }"
+            @click="changeImg(index)"
+            :key="index">
+          </img>
         </div>
       </div>
     </div>
-    <script src="./assets/js/app.js"></script>
-  </body>
+  </div>
+
+  <script src="./assets/js/app.js"></script>
+</body>
 </html>

@@ -5,24 +5,19 @@ body {
   background-color: rgba(0, 0, 255, 0.279);
 }
 
-.container {
-  height: 500px;
-  width: 800px;
-  margin: 20px auto;
-  position: relative;
-}
 h1 {
   color: blueviolet;
   display: flex;
   justify-content: center;
 }
+
 .overlay {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-/*  circle */
+/* Cerchio */
 .circle {
   width: 38px;
   height: 38px;
@@ -38,7 +33,7 @@ h1 {
   color: white;
 }
 
-/* Posizion per i cerchi */
+/* Posizion per circles */
 .next {
   right: 10px;
   transform: translateY(-50%); /* Centra verticalmente rispetto al container */
@@ -47,14 +42,6 @@ h1 {
 .prev {
   left: 10px;
   transform: translateY(-50%);
-}
-
-.next::before {
-  content: "►"; /*  freccia dx */
-}
-
-.prev::before {
-  content: "◄"; /*  freccia sx */
 }
 
 .slider {
@@ -84,9 +71,11 @@ h1 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.5;
 }
 
 .active {
-  border: 2px solid yellow;
+  border: 2px solid rgb(246, 195, 247);
+}
+.icon {
+  border: 2px dashed;
 }
