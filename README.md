@@ -24,32 +24,44 @@ regola d'oro: riciclare ovunque possibile!:
 - array with 5 images that contains the paths
 - The activeImage variable represents the index of the currently displayed image. I've set it to 0 initially and then chang in 1
 
-# Methods:
-
-- nextPrev(isNext): This method is responsible for navigating to the next or previous image based on the isNext parameter. It also includes logic to loop through the images when reaching the beginning or end of the array.
-- changeImage(index): This method is triggered when a thumbnail is clicked, changing the active image to the one corresponding to the clicked thumbnail.
-- autoScroll(): This method uses setInterval to automatically scroll to the next image every 3 seconds
-
 # tools
-
-# Image Iteration with v-for
-
-When working with Vue.js, you often need to iterate over a collection of items and perform certain actions based on conditions. Here's how you can use `v-for`, `v-if`, and `v-else` directives to achieve image iteration and navigation button display in Vue.js:
 
 ## Image Iteration with v-for:
 
-Using `v-for="(img, index) in images"`, you can iterate over each element of the `images` array and access the current image (`img`) and its index (`index`).
+use `v-for` to iterate over the images in the `images` array and dynamically generate image thumbnails in the `thumb-container`, allowing the user to click on them to change the main image displayed in the slider:
 
-## Conditional Navigation Button Display:
+- use the `v-for="(img, index) in images"` directive on the `<img>` element inside `thumb-container`. This directive allows to iterate over each element of the `images` array.
+- Each iteration creates an `<img>` element in the `thumb-container`, and `img` represents the path of the current image in the array.
+- `index` represents the current index of the image in the array.
+- Data binding `:src="img"` dynamically sets the `src` attribute of the `<img>` element with the path of the current image.
+- `:class="{ active: index === activeImage % images.length }"` adds the `active` class to the current image if its index is equal to the index of the active image, calculated as `activeImage % images.length`. This allows us to visually highlight the active image among the thumbnails.
+  Of course! Here's the explanation for the methods used in the Vue app:
 
-- With `v-if="activeImage !== 0"`, the template checks if the active image is not the first in the array. If true, only the "Prev" (<) button is displayed.
-- With `v-else`, it handles the case where the active image is the first in the array. In this case, only the "Next" (>) button is displayed.
-- In both cases, `v-for` is used to iterate over objects in the `arrows` array, which contain information about navigation buttons.
+## Methods:
 
-## Event Handling on Buttons:
+the methods `prevImage()`, `nextImage()`, and `changeImg(index)` handle image navigation and selection, while the `mounted()` hook sets up automatic image scrolling using `setInterval()`
 
-- The `@click="prevImage()"` and `@click="nextImage()"` directives call the `prevImage()` and `nextImage()` functions respectively when clicking on the "Prev" and "Next" buttons. These functions manage the change of the active image.
+### prevImage():
 
-## Hover Effect Management:
+- This method is called when the user clicks on the "Prev" button to navigate to the previous image.
+- It decrements the value of `activeImage` by 1 and ensures that it remains within the bounds of the `images` array using modulo operation `(this.activeImage - 1 + this.images.length) % this.images.length`.
+- This ensures that the images loop back to the last one when the user reaches the beginning of the array.
 
-- The `@mouseover="hoverEffect(true)"` and `@mouseleave="hoverEffect(false)"` directives trigger the `hoverEffect(true)` and `hoverEffect(false)` functions respectively when hovering over and exiting the buttons. These functions can be implemented to manage the hover effect if necessary.
+### nextImage():
+
+- This method is called when the user clicks on the "Next" button to navigate to the next image.
+- It increments the value of `activeImage` by 1 and ensures that it remains within the bounds of the `images` array using modulo operation `(this.activeImage + 1) % this.images.length`.
+- This ensures that the images loop back to the first one when the user reaches the end of the array.
+
+### changeImg(index):
+
+This method is called when the user clicks on one of the thumbnail images to change the active image:
+
+- It takes the index of the clicked thumbnail as a parameter and sets the value of `activeImage` to that index.
+- This allows the user to directly select a specific image from the thumbnails.
+
+### setInterval():
+
+- This hook is called after the Vue app is mounted to the DOM.
+- It sets up an interval function using `setInterval()` that automatically calls the `nextImage()` method every 3 seconds.
+- This enables automatic scrolling through the images, providing a slideshow-like functionality.

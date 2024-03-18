@@ -9,14 +9,15 @@
 </head>
 <body>
   <div id="app">
+    <h1>Capri Island</h1>
     <div class="container">
       <div class="overlay">
         <button class="circle prev" @click="prevImage()" @mouseover="hoverEffect(true)" @mouseleave="hoverEffect(false)">{{ "<" }}</button>
-
+  
         <div class="slider">
           <img :src="images[activeImage]" alt="">
         </div>
-
+  
         <button class="circle next" @click="nextImage()" @mouseover="hoverEffect(true)" @mouseleave="hoverEffect(false)">{{ ">" }}</button>
         
         <div class="thumb-container">
@@ -32,7 +33,7 @@
       </div>
     </div>
   </div>
-
+  
   <script src="./assets/js/app.js"></script>
 </body>
 </html>
